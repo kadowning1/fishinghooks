@@ -3,25 +3,35 @@ import './App.css';
 
 
 // const axios = require('axios');
-
-import React from 'react';
+import React, { useState } from 'react';
+// import React from 'react';
 import './App.css';
-import Dashboard from '../Components/Dashboard';
-import LogIn from '../Components/LogIn';
+import Dashboard from './Components/Dashboard'
+import NewUser from './Components/NewUser'
+import Login from './Components/Login'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
+    const [token, setToken] = useState();
+
+    if(!token) {
+        return <Login setToken={setToken} />
+    }
+    
   return (
-   <div className="wrapper">
-      <h1>Application</h1>
+   <div className="text-center">
+      <h1>Cat Steve's Tackle Shoppe</h1>
       <BrowserRouter>
         <Switch>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
+          <Route path="/newuser">
+            <NewUser />
+          </Route>
           <Route path="/login">
-            <LogIn />
+            <Login />
           </Route>
         </Switch>
       </BrowserRouter>
