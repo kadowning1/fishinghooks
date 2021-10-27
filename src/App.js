@@ -3,40 +3,59 @@ import './App.css';
 
 
 // const axios = require('axios');
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import React from 'react';
 import './App.css';
-import Dashboard from './Components/Dashboard'
-import NewUser from './Components/NewUser'
-import Login from './Components/Login'
+// import Dashboard from './Pages/Dashboard'
+import NewUser from './Pages/NewUser'
+import Login from './Pages/Login'
+import NewNavBar from './Components/NewNavBar'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './Pages/Home';
+// import { Navbar } from 'react-bootstrap';
+
 
 function App() {
-    const [token, setToken] = useState();
+    const [token, setToken] = useState('');
 
-    if(!token) {
-        return <Login setToken={setToken} />
-    }
-    
-  return (
-   <div className="text-center">
-      <h1>Cat Steve's Tackle Shoppe</h1>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/newuser">
-            <NewUser />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+    useEffect(() => {
+        
+        return () => {
+            
+        }
+    }, [])
+
+    useEffect(() => {
+        
+        return () => {
+            
+        }
+    }, [])
+
+    // if(!token) {
+    //     return <Login setToken={setToken} />
+    // }
+
+    return (
+        <div className="text-center">
+            <h1>Cat Steve's Tackle Shoppe</h1>
+            <BrowserRouter>
+            <NewNavBar />     
+                <Switch>
+                    <Route path="/newuser">
+                        <NewUser />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path={["/", "/dashboard"]}>
+                        <Home />
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
