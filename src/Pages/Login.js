@@ -52,7 +52,11 @@ export default function Login(props) {
         switch (error.response.status) {
           case 422:
             console.log(error.response.data.errors)
-            setError(error.response.data.errors.email)
+            if (error.response.data.errors.email) {
+              setError(error.response.data.errors.email)
+            } else {
+              setError(error.response.data.errors.password.toUpperCase())
+            }
             break
           default:
             console.log('No status')
@@ -100,7 +104,7 @@ export default function Login(props) {
             <label>
               <h6 className='p-2'>Username</h6>
               <input
-                {...register("email", { required: true, minLength: 4, maxLength: 60 })}
+                {...register("email", { required: true, minLength: 4, maxLength: 64 })}
                 type="email"
                 name="email"
                 id='email'
@@ -113,7 +117,7 @@ export default function Login(props) {
             <label>
               <h6 className='p-2'>Password</h6>
               <input
-                {...register("password", { required: true, minLength: 8, maxLength: 422 })}
+                {...register("password", { required: true, minLength: 8, maxLength: 64 })}
                 type="password"
                 name='password'
                 value={login.password}
@@ -130,7 +134,7 @@ export default function Login(props) {
               <Link as={Link} to="/newuser" className="btn btn-secondary">New User</Link>
             </div>
             {/* <p>{error.message}</p> */}
-            {error.length > 0 ? <p>{error}</p> : null}
+            {error.length > 0 ? <h4 className='text-danger'>{error}</h4> : null}
           </form>
         </div>
       </div>

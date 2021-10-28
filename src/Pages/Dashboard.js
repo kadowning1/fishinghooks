@@ -63,7 +63,7 @@ export default function Dashboard(props) {
                     {/* <p>{JSON.stringify(dashboard?.data?.user_data.orders[0])}</p>  */}
                     {/* map over and print data */}
                     <h6>Shipping:</h6>
-                    <p>{dashboard?.data?.user_data.orders[0].shipping.name}</p>
+                    <p>{dashboard?.data?.user_data?.orders[0]?.shipping.name}</p>
                 </div>
                 <Dropdown.Divider />
                 <Dropdown.Item href="#">Products</Dropdown.Item>
