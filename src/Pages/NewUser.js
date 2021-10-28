@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
+export default function NewUser(props) {
 
-export default function NewUser() {
-
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [email, setEmail] = useState('');
     const [newUser, setNewUser] = useState({})
-
+    const history = useHistory()
     const createNewUser = (event) => {
-        // let newUser = response.data.username;
-        // let newPassword = response.data.password;
+
         event.preventDefault();
+        const data = {
+            email: newUser.email,
+            name: newUser.username,
+            password: newUser.password,
+        }
+        // console.log(data)
         axios({
             method: 'post',
-            url: 'http://awesomeincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register',
-            data: newUser
+            url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register',
+            data,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                // 'Access-Control-Allow-Headers': 'Content-Type',
+                // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+                // 'Access-Control-Allow-Credentials': true,
+                // 'Authorization': 'Bearer ' + token
+            },
         }
         )
-
             // Make a request for a user with a given ID
 
             .then(function (response) {
                 // handle success
-                console.log(response.data.data.token)
+                props.saveToken(response.data.data.token)
+                history.push('/login')
+                // console.log(response.data.data.token)
                 // console.log(response);
             })
             .catch(function (error) {
@@ -41,60 +53,46 @@ export default function NewUser() {
         return setNewUser(previousState => ({ ...previousState, [e.target.name]: e.target.value }), [])
     }
 
-    // const updateUser = (event) => {
-    //     const username = event.target.value;
-    //     setUsername(username);
-    //     console.log(password)
-    // };
-
-    // const updatePassword = (event) => {
-    //     const password = event.target.value;
-    //     setPassword(password);
-    //     console.log(password)
-    // };
-
-    // const updateEmail = (event) => {
-    //     const email = event.target.value;
-    //     setEmail(email);
-    //     console.log(password)
-    // };
-
-    // const submitNewUser = () => {
-
-    // }
-
-    console.log({ newUser })
     return (
         <div className='container'>
             <div className='row'>
                 <div className="col text-center">
                     <h2>Create New User</h2>
                     <form>
-                        <label>
-                            <p>Enter New UserName</p>
+                        <label className='p-3'>
+                            <h5>Enter New UserName</h5>
                             <input
-                                type="text"
-                                placeholder="username123"
-                                onChange={objectAssistant} />
+                                type="username"
+                                name='username'
+                                placeholder="Enter Username"
+                                onChange={objectAssistant}
+                                value={newUser.username}
+                                className='' />
                         </label>
                         <br></br>
-                        <label>
-                            <p>Enter New Password</p>
+                        <label className='p-3'>
+                            <h5>Enter New Password</h5>
                             <input
                                 type="password"
+                                name='password'
                                 placeholder="Password"
-                                onChange={objectAssistant} />
+                                onChange={objectAssistant}
+                                value={newUser.password} />
                         </label>
                         <br></br>
-                        <label>
-                            <p> Enter Email Address</p>
+                        <label className='p-3'>
+                            <h5> Enter Email Address</h5>
                             <input
                                 type="email"
+                                name='email'
                                 placeholder="catsteve@gmail.com"
-                                onChange={objectAssistant} />
+                                onChange={objectAssistant}
+                                value={newUser.email} />
                         </label>
                         <div className='p-3'>
-                            <Button variant="secondary" onClick={createNewUser}>Submit New User/Login</Button>{' '}
+                            <Button
+                                variant="secondary"
+                                onClick={createNewUser}>Submit New User</Button>{' '}
                         </div>
                     </form>
                 </div>

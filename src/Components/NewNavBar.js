@@ -1,18 +1,26 @@
 import React from 'react'
-import { } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
-import {Navbar, Container, Nav, Button} from 'react-bootstrap';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
-export default function NewNavBar() {
+export default function NewNavBar(props) {
+
+    const history = useHistory()
 
     const logOut = () => {
-
         axios({
             method: 'get',
-            url: 'http://awesomeincbootcampapi-ianrios529550.codeanyapp.com/api/auth/logout',
-            success: false
+            url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/logout',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': 'Bearer ' + props.token
+            },
         })
             .then(function (response) {
+                props.removeToken()
+                history.push('/')
                 console.log(response)
 
             })
@@ -24,17 +32,21 @@ export default function NewNavBar() {
     return (
         <nav className="navbar">
             <div className="container-fluid justify-content-center">
-                    <Navbar bg="primary" variant="dark">
-                        <Container>
-                            <Navbar.Brand href="https://port-3000-react-container-2-kadowning110103.codeanyapp.com/">Cat Steve's</Navbar.Brand>
-                            <Nav className="me-auto">
-                                <Nav.Link href="https://port-3000-react-container-2-kadowning110103.codeanyapp.com/">Home</Nav.Link>
-                                <Nav.Link href="https://port-3000-react-container-2-kadowning110103.codeanyapp.com/newuser">New User</Nav.Link>
-                                <Button variant="success" onClick={logOut}>Logout</Button>{' '}
-                            </Nav>
-                        </Container>
-                    </Navbar>
+                <div className='row'>
+                    <div className='col-12'>
+                        <Navbar bg="primary" variant="dark">
+                            <Container>
+                                <Navbar.Brand as={Link} to="/">Cat Steve's</Navbar.Brand>
+                                <Nav className="me-auto">
+                                    <Nav.Link as={Link} to="/" >Home</Nav.Link>
+                                    <Nav.Link as={Link} to="/newuser">New User</Nav.Link>
+                                    <Button variant="success" onClick={logOut}>Logout</Button>{' '}
+                                </Nav>
+                            </Container>
+                        </Navbar>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </nav >
     )
 }

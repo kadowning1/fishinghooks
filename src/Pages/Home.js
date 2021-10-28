@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 export default function Home() {
     return (
         <div className='text-center'>
-            <h2>Home</h2>
-            <h3>Welcome to Cat Steve's</h3>
             <br></br>
-            <Link to="/login" className="btn btn-secondary lg p-3">Enter</Link>
+            <h2>Welcome to Cat Steve's</h2>
+            <br></br>
+            <Link to="/login" as={Link} className="btn btn-secondary lg p-3">Enter</Link>
             <br></br>
             <div className='card-body'>
                 <div className='row justify-content-center'>
