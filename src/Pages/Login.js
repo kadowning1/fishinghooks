@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
 
 export default function Login(props) {
 
   const [login, setLogin] = useState({})
+  const { register, formState: { errors }, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   const getLogin = (event) => {
     // console.log(password)
@@ -70,16 +73,18 @@ export default function Login(props) {
               <img className='h-25 w-25' src='./img/Cat Steves.png' alt='logo'></img>
             </div>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label>
               <h6 className='p-2'>Username</h6>
               <input
+                {...register("email", { required: true })}
                 type="email"
                 name='email'
                 id='email'
                 value={login.username}
                 onChange={objectAssistant}
               />
+              {errors.email?.type === 'required' && "First name is required"}
             </label>
             <label>
               <h6 className='p-2'>Password</h6>
@@ -91,7 +96,7 @@ export default function Login(props) {
                 id='password'
               />
             </label>
-            <p>Password needs to be 8 characters in length</p>
+            {/* <p>Password needs to be 8 characters in length</p> */}
             <br></br>
             <div className='p-3'>
               <Button variant="secondary" size='lg' onClick={getLogin}>Login</Button>{' '}

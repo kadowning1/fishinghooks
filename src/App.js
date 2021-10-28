@@ -5,6 +5,7 @@ import Dashboard from './Pages/Dashboard'
 import NewUser from './Pages/NewUser'
 import Login from './Pages/Login'
 import NewNavBar from './Components/NewNavBar'
+// import ReactForm from './Components/ReactForm'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './Pages/Home';
 // import { Navbar } from 'react-bootstrap';
@@ -58,6 +59,7 @@ function App() {
                         <Home />
                     </Route>
                 </Switch>
+                {/* <ReactForm />    */}
             </BrowserRouter>
         </div>
     );

@@ -40,7 +40,7 @@ export default function NewNavBar(props) {
                                 <Nav className="me-auto">
                                     <Nav.Link as={Link} to="/" >Home</Nav.Link>
                                     <Nav.Link as={Link} to="/newuser">New User</Nav.Link>
-                                    <Button variant="success" onClick={logOut}>Logout</Button>{' '}
+                                    {props.token.length > 0 ? <Button variant="success" onClick={logOut}>Logout</Button> : null}
                                 </Nav>
                             </Container>
                         </Navbar>
