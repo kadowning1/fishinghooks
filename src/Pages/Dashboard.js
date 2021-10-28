@@ -54,8 +54,16 @@ export default function Dashboard(props) {
 
             >
                 <div className='text-center'>
-                    <p>Previous Orders</p>
-                    {/* <p>{dashboard?.data.user_data.orders}</p> */}
+                    <h5>Previous Orders</h5>
+                    <h6>Item:</h6>
+                    <p>Whopper Plopper</p>
+                    {/* <br></br> */}
+                    <h6>Order Placed:</h6>
+                    <p>{dashboard?.data?.user_data.created_at.split('T')[0]}</p>
+                    {/* <p>{JSON.stringify(dashboard?.data?.user_data.orders[0])}</p>  */}
+                    {/* map over and print data */}
+                    <h6>Shipping:</h6>
+                    <p>{dashboard?.data?.user_data.orders[0].shipping.name}</p>
                 </div>
                 <Dropdown.Divider />
                 <Dropdown.Item href="#">Products</Dropdown.Item>

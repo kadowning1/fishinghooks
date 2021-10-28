@@ -10,8 +10,6 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from './Pages/Home';
 // import { Navbar } from 'react-bootstrap';
 
-// display error message
-
 function App() {
     const [token, setToken] = useState('');
 
