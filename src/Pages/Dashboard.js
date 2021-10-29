@@ -11,7 +11,7 @@ export default function Dashboard(props) {
 
         axios({
             method: 'get',
-            url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/user',
+            url: 'https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/user',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -38,6 +38,7 @@ export default function Dashboard(props) {
     }, [])
 
     console.log(dashboard)
+    // console.log(token)
 
     return (
         <div>

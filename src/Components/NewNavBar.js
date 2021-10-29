@@ -10,7 +10,7 @@ export default function NewNavBar(props) {
     const logOut = () => {
         axios({
             method: 'get',
-            url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/logout',
+            url: 'https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/logout',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

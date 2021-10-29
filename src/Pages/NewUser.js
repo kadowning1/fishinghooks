@@ -24,7 +24,7 @@ export default function NewUser(props) {
     // console.log(data)
     axios({
       method: 'post',
-      url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register',
+      url: 'https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/register',
       data,
       headers: {
         'Accept': 'application/json',

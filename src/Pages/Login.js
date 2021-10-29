@@ -19,7 +19,7 @@ export default function Login(props) {
     event.preventDefault();
     axios({
       method: 'post',
-      url: 'https://port-3000-aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login',
+      url: 'https://aincbootcampapi-ianrios529550.codeanyapp.com/api/auth/login',
       data: {
         email: login.email,
         password: login.password,

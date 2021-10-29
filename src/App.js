@@ -34,7 +34,7 @@ function App() {
         setToken('')
     };
 
-
+    console.log(token)
 
     return (
         <div className="text-center">
